@@ -41,9 +41,25 @@
 ---------------
 3. 스프링 핵심 원리 이해2 - 객체 지향 원리 적용
 - 새로운 할인 정책 개발
+  
+  <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/4d0cb4fd-3534-4298-8a9e-57acd9b6b211">
+  <img width="460" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/6224d6b0-e128-46d5-9c9b-e02b19e65d66">
+
 - 새로운 할인 정책 적용과 문제점
-- 관심사의 분리
+  - 문제코드 (**OCP, DIP 위반**): <img width="650" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/aa0dad10-73ef-465b-b940-ada5e57d7554">
+
+- 관심사의 분리(**해결방안** : 생성자 주입) , AppConfig 리팩토링
+    - 클라이언트인 `memberServiceImpl` 입장에서 보면 의존관계를 마치 외부에서 주입해주는 것 같다고 해서 DI(Dependency Injection) 우리말로 의존관계 주입 또는 의존성 주입이라 한다.
+  
+    <img width="495" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/459eaf61-2be7-465a-9535-cc99ae920a06">
+    <img width="470" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/3fedb165-deef-42c7-8000-97c2b4f88219">
+    
+    - Test 코드(BeforeEach 애노테이션 적용 <- **테스트 전 AppConfig 실행**)  <img width="300" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/09cb0f6a-8522-4837-8b0c-639c6b4d8ad1">
+
 - AppConfig 리팩토링
+  - 변경 전 : <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/3fedb165-deef-42c7-8000-97c2b4f88219">
+  - 변경 후 : <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/740d9ac2-ebcf-4db0-a9da-eb4691ea01db">
+
 - 새로운 구조와 할인 정책 적용(SOLID 원칙 활용)
 - IoC, DI, 그리고 컨테이너
 - *스프링으로 전환하기*
