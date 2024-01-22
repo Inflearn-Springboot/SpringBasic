@@ -60,7 +60,7 @@
   - 변경 전 : <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/3fedb165-deef-42c7-8000-97c2b4f88219">
   - 변경 후 : <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/740d9ac2-ebcf-4db0-a9da-eb4691ea01db">
 
-- 새로운 구조와 할인 정책 적용(SOLID 원칙 활용)
+- 새로운 구조와 할인 정책 적용(SOLID 원칙 활용) <- 여기서 3가지 SRP, DIP, OCP 적용
     - `public DiscountPolicy discountPolicy() {
         return new RateDiscountPolicy();
         //return new FixDiscountPolicy(); }`
