@@ -61,6 +61,9 @@
   - 변경 후 : <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/740d9ac2-ebcf-4db0-a9da-eb4691ea01db">
 
 - 새로운 구조와 할인 정책 적용(SOLID 원칙 활용)
+    - `public DiscountPolicy discountPolicy() {
+        return new RateDiscountPolicy();
+        //return new FixDiscountPolicy(); }`
 - IoC, DI, 그리고 컨테이너
 - *스프링으로 전환하기*
 ---------------
