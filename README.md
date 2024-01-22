@@ -36,6 +36,8 @@
 
 - 주문과 할인 도메인 실행과 테스트
   
+  <img width="400" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/232955db-7ffb-4d82-8311-d502337b9d99">
+
 ---------------
 3. 스프링 핵심 원리 이해2 - 객체 지향 원리 적용
 - 새로운 할인 정책 개발
