@@ -77,10 +77,20 @@
   <img width="470" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/92967c6f-4c0b-433e-92a3-c5002c7d5bf7">
   <img width="440" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/88b02ace-9352-4c1d-b579-61911167dd6e">
 
+**코드가 약간 더 복잡해진 것 같은데, 스프링 컨테이너를 사용하면 어떤 장점이 있을까?**
 
 ---------------
 4. 스프링 컨테이너와 스프링 빈
 - 스프링 컨테이너 생성
+  
+  <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/bc667041-5b68-41e3-af61-61c57dc46a67">
+  <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/b51fef3c-f2d3-4825-81e1-e9199318c53b">
+  <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/085cc26b-3f01-4efb-93de-42bb2d3c295a">
+  <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/61d447f6-c0d0-471a-b8f2-80476ef82258">
+
+  **주의: 빈 이름은 항상 다른 이름을 부여해야 한다. 같은 이름을 부여하면, 다른 빈이 무시되거나, 기존 빈을 덮어버리거나 설정에 따라 오류가 발생한다.**
+
+
 - 컨테이너에 등록된 모든 빈 조회
 - 스프링 빈 조회 (기본, 동일한 타입이 둘 이상, 상속 관계)
 - BeanFactory와 ApplicationContext
