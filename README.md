@@ -72,6 +72,12 @@
   - DI : 의존관계는 **정적인 클래스 의존 관계와, 실행 시점에 결정되는 동적인 객체(인스턴스) 의존 관계** 둘을 분리해서 생각해야 한다. 애플리케이션 **실행 시점(런타임)**에 외부에서 실제 구현 객체를 생성하고 클라이언트에 전달해서 클라이언트와 서버의 실제 의존관계가 연결 되는 것을 **의존관계 주입**이라 한다.
   - 컨테이너 : AppConfig 처럼 객체를 생성하고 관리하면서 의존관계를 연결해 주는 것을 IoC 컨테이너 또는 DI 컨테이너라 한다. 또는 어샘블러, 오브젝트 팩토리 등으로 불리기도 한다.
 - *스프링으로 전환하기*
+
+  <img width="470" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/011bc4af-df55-477f-8564-8a207efc5691">
+  <img width="470" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/92967c6f-4c0b-433e-92a3-c5002c7d5bf7">
+  <img width="440" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/88b02ace-9352-4c1d-b579-61911167dd6e">
+
+
 ---------------
 4. 스프링 컨테이너와 스프링 빈
 - 스프링 컨테이너 생성
