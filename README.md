@@ -18,8 +18,13 @@
 ---------------
 2. 스프링 핵심 원리 이해1 - 예제 만들기
 - 비즈니스 요구사항과 설계 : 회원가입 및 조회, 회원등급 : (일반, VIP) , 회원데이터 : 자체 DB or 외부 시스템(미확정), 상품 주문(회원만), 할인 정책 적용
-- 회원 도메인 설계 및 개발 
-- 회원 도메인 실행과 테스트
+- 회원 도메인 설계 및 개발
+<img width="453" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/15109b20-3ab8-497b-b637-b8cd9cd54614">
+<img width="451" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/6e78e715-4a1e-4b41-a19d-95c21be6ff38">
+
+- 회원 도메인 실행과 테스트 : **의존관계가 인터페이스 뿐만 아니라 구현까지 모두 의존하는 문제점이 있음**
+   - `public class MemberServiceImpl implements MemberService { private final MemberRepository memberRepository = new MemoryMemberRepository();`
+     
 - 주문과 할인 도메인 설계 및 개발
 - 주문과 할인 도메인 실행과 테스트
 ---------------
