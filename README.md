@@ -23,10 +23,19 @@
 <img width="451" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/6e78e715-4a1e-4b41-a19d-95c21be6ff38">
 
 - 회원 도메인 실행과 테스트 : **의존관계가 인터페이스 뿐만 아니라 구현까지 모두 의존하는 문제점이 있음**
-   - `public class MemberServiceImpl implements MemberService { private final MemberRepository memberRepository = new MemoryMemberRepository();`
+   - 문제 코드 : `public class MemberServiceImpl implements MemberService { private final MemberRepository memberRepository = new MemoryMemberRepository();`
+   - 테스트 코드 : <img width="400" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/9a34e8dc-e3b4-4283-b15e-bbfec9abd7be">
      
 - 주문과 할인 도메인 설계 및 개발
+  
+  <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/65c87388-8c7a-4379-8f75-bfad3c32b837">
+  <img width="450" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/4f1a1495-2fcf-4cea-b246-aac7b781ec30">
+  <img width="400" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/ef67e94a-2565-47f6-9221-02cbc681554b">
+  <img width="400" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/2d1906e6-4155-4651-a31d-9658b71af871">
+
+
 - 주문과 할인 도메인 실행과 테스트
+  
 ---------------
 3. 스프링 핵심 원리 이해2 - 객체 지향 원리 적용
 - 새로운 할인 정책 개발
