@@ -264,12 +264,43 @@ spring.main.allow-bean-definition-overriding=true`
 ---------------
 7. 의존관계 자동 주입
 - 다양한 의존관계 주입 방법
+  - 생성자 주입 <- **불변, 필수** 의존관계에 사용
+  - 수정자 주입(setter 주입) <- **선택, 변경** 가능성이 있는 의존관계에 사용
+  - 필드 주입, 일반 메서드 주입 (일반적으로 사용 x)
 - 옵션 처리
-- 생성자 주입
+  - `@Autowired(required=false)` : 자동 주입할 대상이 없으면 수정자 메서드 자체가 호출 안됨
+  - `org.springframework.lang.@Nullable` : 자동 주입할 대상이 없으면 null이 입력된다.
+  - `Optional<>` : 자동 주입할 대상이 없으면 `Optional.empty` 가 입력된다.
+- **생성자 주입**
+  - 생성자 주입 방식을 선택하는 이유는 여러가지가 있지만, 프레임워크에 의존하지 않고, 순수한 자바 언어의 특징 을 잘 살리는 방법이기도 하다.
+  - 기본으로 생성자 주입을 사용하고, 필수 값이 아닌 경우에는 수정자 주입 방식을 옵션으로 부여하면 된다. 생성자 주입과 수정자 주입을 동시에 사용할 수 있다.
 - 롬복과 최신 트랜드
+
+      @Component
+      @RequiredArgsConstructor //<- Lombok 제공
+      public class OrderServiceImpl implements OrderService {
+         private final MemberRepository memberRepository;
+         private final DiscountPolicy discountPolicy;
+      }
+ 
 - @Autowired 필드 명, @Qualifier, @Primary
+  - @Autowired private DiscountPolicy discountPolicy
+  - @Qualifier("mainDiscountPolicy")
+  - @Autowired 시에 여러 빈이 매칭되면 `@Primary` 가 우선권을 가진다.
 - 애노테이션 직접 만들기
+
+      @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+      @Retention(RetentionPolicy.RUNTIME)
+      @Inherited
+      @Documented
+      @Qualifier("mainDiscountPolicy")
+      public @interface MainDiscountPolicy {
+      }
+
+**@MainDiscountPolicy로 사용**
+
 - 조회한 빈이 모두 필요할 떄, List, Map
+    
 - 자동, 수동의 올바른 실무 운영 기준
 ---------------
 8. 빈 생명주기 콜백
