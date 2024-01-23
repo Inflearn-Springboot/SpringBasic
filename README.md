@@ -327,8 +327,28 @@ spring.main.allow-bean-definition-overriding=true`
 ---------------
 9. 빈 스코프
 - 빈 스코프란?
+    - 스코프는 번역 그대로 빈이 존재할 수 있는 범위를 뜻한다.
+    - **싱글톤**: 기본 스코프, 스프링 컨테이너의 시작과 종료까지 유지되는 가장 넓은 범위의 스코프이다.
+    - **프로토타입**: 스프링 컨테이너는 프로토타입 빈의 생성과 의존관계 주입까지만 관여하고 더는 관리하지 않는 매우 짧은 범위의 스코프이다.
+    - **웹 관련 스코프**
+    - **request**: 웹 요청이 들어오고 나갈때 까지 유지되는 스코프이다.
+    - **session**: 웹 세션이 생성되고 종료될 때 까지 유지되는 스코프이다.
+    - **application**: 웹의 서블릿 컨텍스트와 같은 범위로 유지되는 스코프이다.
 - 프로토타입 스코프 - 싱글톤 빈과 함께 사용시 문제점 -> Provider로 문제 해결
+
+  <img width="696" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/fb54220f-a691-4e2f-86d8-e216847f6d07">
+
+  - 싱글톤 빈은 스프링 컨테이너가 관리하기 때문에 스프링 컨테이너가 종료될 때 빈의 종료 메서드가 실행되지만, 프로토타입 빈은 스프링 컨테이너가 생성과 의존관계 주입 그리고 초기화 까지만 관여하고, 더는 관리하지 않는다.
+  - 따라서 프로토타입 빈은 스프링 컨테이너가 종료될 때 `@PreDestroy` 같은 종료 메서드가 전혀 실행되지 않는다.
+
+  <img width="696" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/9932f632-a9e4-4345-82a9-de30911bd015">
+  - **참고:** 실무에서 자바 표준인 JSR-330 Provider를 사용할 것인지, 아니면 스프링이 제공하는 ObjectProvider 를 사용할 것인지 고민이 될 것이다. ObjectProvider는 DL을 위한 편의 기능을 많이 제공해주고 스프링 외에 별 도의 의존관계 추가가 필요 없기 때문에 편리하다. 만약(정말 그럴일은 거의 없겠지만) 코드를 스프링이 아닌 다른 컨테이너에서도 사용할 수 있어야 한다면 JSR-330 Provider를 사용해야한다.
+
 - 웹 스코프
-- requeust 스코프 예제 만들기
-- 스코프와 Provider
+
+  <img width="696" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/8e49e3c2-4ae9-4897-ad27-c4b6826713a1">
+
 - 스코프와 프록시
+
+  <img width="697" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/5763b1f8-521f-4d81-9d88-6cfeb23468f3">
+
