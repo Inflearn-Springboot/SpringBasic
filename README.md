@@ -297,17 +297,33 @@ spring.main.allow-bean-definition-overriding=true`
       public @interface MainDiscountPolicy {
       }
 
-**@MainDiscountPolicy로 사용**
+  - **@MainDiscountPolicy로 사용**
 
 - 조회한 빈이 모두 필요할 떄, List, Map
-    
+    - `Map<String, DiscountPolicy>` : map의 키에 스프링 빈의 이름을 넣어주고, 그 값으로 `DiscountPolicy` 타입으로 조회한 모든 스프링 빈을 담아준다.
+    - `List<DiscountPolicy>` : `DiscountPolicy` 타입으로 조회한 모든 스프링 빈을 담아준다.
 - 자동, 수동의 올바른 실무 운영 기준
+    - **편리한 자동 기능을 기본으로 사용하자**
+    - 다형성을 적극 활용하는 비즈니스 로직은 수동 등록을 고민해보자
 ---------------
 8. 빈 생명주기 콜백
 - 빈 생명주기 콜백 시작
+  - **스프링 빈의 이벤트 라이프사이클**
+  - **스프링 컨테이너 생성** -> **스프링 빈 생성** -> **의존관계 주입** -> **초기화 콜백** -> **사용** -> **소멸전 콜백** -> **스프링 종료**
+  - **초기화 콜백**: 빈이 생성되고, 빈의 의존관계 주입이 완료된 후 호출
+  - **소멸전 콜백**: 빈이 소멸되기 직전에 호출
 - 인터페이스 InitializingBean, DisposableBean
+  - `InitializingBean` 은 `afterPropertiesSet()` 메서드로 초기화를 지원한다.
+  - `DisposableBean` 은 `destroy()` 메서드로 소멸을 지원한다.
+  - 참고: 인터페이스를 사용하는 초기화, 종료 방법은 스프링 초창기에 나온 방법들이고, 지금은 다음의 더 나은 방법 들이 있어서 거의 사용하지 않는다.
 - 빈 등록 초기화, 소멸 메서드
-- 애노테이션 @PostConstruct, @PreDestroy
+  - `@Bean(initMethod = "init", destroyMethod = "close")` 처럼 초기화, 소멸 메서드를 지정할 수 있다.
+- **애노테이션 @PostConstruct, @PreDestroy**
+  - 최신 스프링에서 가장 권장하는 방법이다.
+  - 애노테이션 하나만 붙이면 되므로 매우 편리하다.
+  - 패키지를 잘 보면 `javax.annotation.PostConstruct` 이다. 스프링에 종속적인 기술이 아니라 JSR-250 라는 자바 표준이다. 따라서 스프링이 아닌 다른 컨테이너에서도 동작한다.
+  - 컴포넌트 스캔과 잘 어울린다.
+  - 유일한 단점은 외부 라이브러리에는 적용하지 못한다는 것이다. 외부 라이브러리를 초기화, 종료 해야 하면 @Bean의 기능을 사용하자.
 ---------------
 9. 빈 스코프
 - 빈 스코프란?
