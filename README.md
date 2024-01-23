@@ -147,8 +147,38 @@
 ---------------
 5. 싱글톤 컨테이너
 - 웹 애플리케이션과 싱글톤
+    - 우리가 만들었던 스프링 없는 순수한 DI 컨테이너인 AppConfig는 요청을 할 때 마다 객체를 새로 생성한다.
+    - 고객 트래픽이 초당 100이 나오면 초당 100개 객체가 생성되고 소멸된다! 메모리 낭비가 심하다.
+    - 해결방안은 해당 객체가 딱 1개만 생성되고, 공유하도록 설계하면 된다. **싱글톤 패턴 필요이유**
 - 싱글톤 패턴, 컨테이너
+  
+      public class SingletonService {
+
+        private static final SingletonService instance = new SingletonService();
+    
+        public static SingletonService getInstance() {
+            return instance;
+        }
+    
+        private SingletonService() {
+    
+        }
+    
+        public void logic() {
+            System.out.println("싱글톤 객체 로직 호출");
+        }
+      }
+ 
+  - 이 객체 인스턴스가 필요하면 오직 `getInstance()` 메서드를 통해서만 조회할 수 있다. 이 메서드를 호출하면 항상 같은 인스턴스를 반환한다.
 - 싱글톤 방식의 주의점
+  - 싱글톤 패턴을 구현하는 코드 자체가 많이 들어간다.
+  - 의존관계상 클라이언트가 구체 클래스에 의존한다. DIP를 위반한다.
+  - 클라이언트가 구체 클래스에 의존해서 OCP 원칙을 위반할 가능성이 높다.
+  - 테스트하기 어렵다.
+  - 내부 속성을 변경하거나 초기화 하기 어렵다.
+  - private 생성자로 자식 클래스를 만들기 어렵다.
+  - 결론적으로 유연성이 떨어진다.
+  - 안티패턴으로 불리기도 한다.
 - @Configuration과 싱글톤, 바이트코드 조작의 마법
 ---------------
 6. 컴포넌트 스캔
