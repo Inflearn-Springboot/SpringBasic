@@ -91,7 +91,7 @@
   **주의: 빈 이름은 항상 다른 이름을 부여해야 한다. 같은 이름을 부여하면, 다른 빈이 무시되거나, 기존 빈을 덮어버리거나 설정에 따라 오류가 발생한다.**
 
 
-- 컨테이너에 등록된 모든 빈 조회
+- 컨테이너에 등록된 모든 빈 조회  **TEST - beanfind package 참고**
 
       public class ApplicationContextInfoTest {
 
@@ -123,9 +123,22 @@
           }
       }
   
-- 스프링 빈 조회 (기본, 동일한 타입이 둘 이상, 상속 관계)
+- 스프링 빈 조회 (기본, 동일한 타입이 둘 이상, 상속 관계) **TEST - beanfind package 참고**
 - BeanFactory와 ApplicationContext
+
+  <img width="931" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/56080344-ce39-4ac8-8b4a-55559d62fb05">
+
+  - MessageSource : 국제화 기능 (한국 -> 한국어, 영어권 -> 영어)
+  - EnvironmentCapable : 환경변수 (로컬, 개발, 운영등을 구분해서 처리)
+  - ApplicationEventPublisher : 애플리케이션 이벤트 (이벤트를 발행하고 구독하는 모델을 편리하게 지원)
+  - ResourceRoader : 편리한 리소스 조회 (파일, 클래스패스, 외부 등에서 리소스를 편리하게 조회)
+    
 - 다양한 설정 형식 지원 - 자바 코드, XML
+  
+    <img width="800" height="500" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/8813efd6-c366-4398-b75a-4402910249df">
+
+    <img width="400" height="200" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/c80e500f-3fc5-4418-96e4-acda41621879">
+
 - 스프링 빈 설정 메타 정보 - BeanDefinition
 ---------------
 5. 싱글톤 컨테이너
