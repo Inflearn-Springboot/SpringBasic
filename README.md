@@ -138,8 +138,12 @@
     <img width="800" height="500" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/8813efd6-c366-4398-b75a-4402910249df">
 
     <img width="400" height="200" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/c80e500f-3fc5-4418-96e4-acda41621879">
+    <- resources - appConfig.xml 
+- 스프링 빈 설정 메타 정보 - BeanDefinition **(역할과 구현 개념적으로 나눈 것)**
+  - `BeanDefinition` 을 빈 설정 메타정보라 한다.
+    
+  <img width="710" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/12e208d7-6650-493d-b3de-f03cabcdeca9">
 
-- 스프링 빈 설정 메타 정보 - BeanDefinition
 ---------------
 5. 싱글톤 컨테이너
 - 웹 애플리케이션과 싱글톤
