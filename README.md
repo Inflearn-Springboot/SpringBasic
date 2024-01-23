@@ -170,16 +170,40 @@
       }
  
   - 이 객체 인스턴스가 필요하면 오직 `getInstance()` 메서드를 통해서만 조회할 수 있다. 이 메서드를 호출하면 항상 같은 인스턴스를 반환한다.
+
+**이러한 문제점을 스프링은 어떻게 보완하였을까?**
+  - **스프링 컨테이너는 싱글턴 패턴을 적용하지 않아도, 객체 인스턴스를 싱글톤으로 관리한다.**
+
+  <img width="646" alt="image" src="https://github.com/Inflearn-Springboot/SpringBasic/assets/96871403/6bd82bd8-4288-4c63-9a3b-54fad3836b30">
+
 - 싱글톤 방식의 주의점
-  - 싱글톤 패턴을 구현하는 코드 자체가 많이 들어간다.
-  - 의존관계상 클라이언트가 구체 클래스에 의존한다. DIP를 위반한다.
-  - 클라이언트가 구체 클래스에 의존해서 OCP 원칙을 위반할 가능성이 높다.
-  - 테스트하기 어렵다.
-  - 내부 속성을 변경하거나 초기화 하기 어렵다.
-  - private 생성자로 자식 클래스를 만들기 어렵다.
-  - 결론적으로 유연성이 떨어진다.
-  - 안티패턴으로 불리기도 한다.
+
+      @Test
+      void statefulServiceSingleton() {
+          ApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
+          StatefulService statefulService1 = ac.getBean(StatefulService.class);
+          StatefulService statefulService2 = ac.getBean(StatefulService.class);
+  
+          //ThreadA: A사용자 10000원 주문
+          int userAPrice = statefulService1.order("userA", 10000);
+          //ThreadB: B사용자 20000원 주문
+          int userBPrice = statefulService2.order("userB", 20000);
+  
+          //ThreadA: 사용자 A 주문 금액 조회
+          System.out.println("price = " + userAPrice);
+  
+          // Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
+        }
+  
+  -`StatefulService` 의 `price` 필드는 공유되는 필드인데, 특정 클라이언트가 값을 변경한다
 - @Configuration과 싱글톤, 바이트코드 조작의 마법
+  - @Configuration 사용할 때 : 
+    결과 ->  (한번씩 호출) call AppConfig.memberService, call AppConfig.memberRepository, call AppConfig.orderService
+  - @Configuration 사용 안할 때 :
+    결과 -> call AppConfig.memberService, call AppConfig.memberRepository, call AppConfig.orderService, call AppConfig.memberRepository, call AppConfig.memberRepository
+  - @Bean만 사용해도 스프링 빈으로 등록되지만, 싱글톤을 보장하지 않는다.
+  - 크게 고민할 것이 없다. 스프링 설정 정보는 항상 `@Configuration` 을 사용하자.
+
 ---------------
 6. 컴포넌트 스캔
 - 컴포넌트 스캔과 의존관계 자동 주입 시작하기
