@@ -207,9 +207,51 @@
 ---------------
 6. 컴포넌트 스캔
 - 컴포넌트 스캔과 의존관계 자동 주입 시작하기
-- 탐색 위치와 기본 스캔 대상
+  
+      @Configuration
+      @ComponentScan(
+              excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
+      )
+      public class AutoAppConfig {
+      
+      }
+  
+  - `@ComponentScan` 은 `@Component` 가 붙은 모든 클래스를 스프링 빈으로 등록한다.(getBean(MemberRepository.class)과 동일하다고 이해)
+
+  
+        @Component
+        public class MemberServiceImpl implements MemberService {
+             private final MemberRepository memberRepository;
+             @Autowired
+             public MemberServiceImpl(MemberRepository memberRepository) {
+                 this.memberRepository = memberRepository;
+           }
+        }
+    
+- 컴포넌트 기본 스캔 대상
+    - `@Controller` : 스프링 MVC 컨트롤러로 인식
+    - `@Repository` : 스프링 데이터 접근 계층으로 인식하고, 데이터 계층의 예외를 스프링 예외로 변환해준다.
+    - `@Configuration` : 앞서 보았듯이 스프링 설정 정보로 인식하고, 스프링 빈이 싱글톤을 유지하도록 추가 처리를 한다.
+    - `@Service` : 사실 `@Service` 는 특별한 처리를 하지 않는다. 대신 개발자들이 핵심 비즈니스 로직이 여기에 있겠구나 라고 비즈니스 계층을 인식하는데 도움이 된다.
+      
 - 필터
+
+      @Configuration
+      @ComponentScan(
+              includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = MyIncludeComponent.class),
+              excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = MyExcludeComponent.class)
+  
+      )
+  - `includeFilters` 에 `MyIncludeComponent` 애노테이션을 추가해서 BeanA가 스프링 빈에 등록된다.
+  - `excludeFilters` 에 `MyExcludeComponent` 애노테이션을 추가해서 BeanB는 스프링 빈에 등록되지 않는다.
+    
+**옵션을 변경하면서 사용하기 보다 는 스프링의 기본 설정에 최대한 맞추어 사용하는 것을 권장하고, 선호하는 편이다.**
+ 
 - 중복 등록과 충돌
+    - **수동 빈 등록, 자동 빈 등록 오류시 스프링 부트 에러**
+`Consider renaming one of the beans or enabling overriding by setting
+spring.main.allow-bean-definition-overriding=true`
+    
 ---------------
 7. 의존관계 자동 주입
 - 다양한 의존관계 주입 방법
